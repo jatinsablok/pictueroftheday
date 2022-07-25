@@ -33,7 +33,7 @@ app.get("/", async (req, res) => {
         await ApodData.save();
         ApodData = data
     }
-    res.render("index", { ApodData });
+    return res.render("index", { ApodData });
 });
 
 

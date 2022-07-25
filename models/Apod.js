@@ -15,7 +15,7 @@ const Apod = new mongoose.Schema({
         type: String
     },
     date: {
-        type: Date
+        type: String/* I choosed type string it helpful for not converting all the time. */
     },
     created_date: {
         type: Date,

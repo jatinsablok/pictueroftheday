@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // connect to the database [I used mongodb cloud so you can test my assignment.]
-mongoose.connect('mongodb+srv://jatin:sablok@cluster0.cecblzx.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect(process.env.dbstring);
 const db = mongoose.connection;
 
 // printing error if connection fails.
