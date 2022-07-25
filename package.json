@@ -1,0 +1,20 @@
+{
+  "name": "pictueroftheday",
+  "version": "1.0.0",
+  "description": "This website shows APOD(Astronomy Picture of the Day) for a selected day.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jatinsablok/pictueroftheday.git"
+  },
+  "author": "jatin sablok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jatinsablok/pictueroftheday/issues"
+  },
+  "homepage": "https://github.com/jatinsablok/pictueroftheday#readme"
+}
