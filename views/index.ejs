@@ -3,32 +3,41 @@
 
 <head>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>APOD</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
-
 <body>
     <div>
         <h2>
-            <%=ApodData.title%>
+            <%=ApodData.title%>.
         </h2>
-        <form action="http://localhost:9000/?date=2021-06-23">
-            <label>
-                Enter Date:
-                <input type="date" date="date" value='<%=ApodData.date%>'>
-            </label>
-            <p><button>Submit</button></p>
-        </form>
-        <img src='<%=ApodData.url%>' alt='<%=ApodData.title%>' width="900" height="400">
-        <p>
-            <%=ApodData.explanation%>
-        </p>
+        <!-- <form style="text-align:right;"> -->
+            <p style="text-align:right;">
+                <label>
+                    Enter Date:
+                    <input type="date" id="date" value='<%=ApodData.date%>'>
+                </label>
+            </p>
+            <!-- <p><button id="submit">Submit</button></p> -->
+        <!-- </form> -->
+        <% if(ApodData.media_type=="image" ){ %>
+            <img src='<%=ApodData.url%>' alt='<%=ApodData.title%>' width="1100" height="400">
+        <% } else{ %>
+                <iframe width="1100" height="400" src='<%=ApodData.url%>'>
+                </iframe>
+        <% } %>
 
+            <p>
+                <b>Explanation:</b><%=ApodData.explanation%>
+            </p>
     </div>
-
+    <script>
+        document.getElementById("date").onchange = async function() {
+            let date = document.getElementById("date").value;
+            // await fetch(`${window.location.origin}/?date=${date}`)
+            window.location.href = `${window.location.origin}/?date=${date}`;
+            console.log("kuch toh hua", date)
+        };
+    </script>
 
 </body>
 

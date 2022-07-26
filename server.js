@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 
 /* routes */
 app.get("/", async (req, res) => {
-    let date = req.query.date || new Date().toISOString().slice(0, 10);;
+    let date = req.query.date || new Date().toISOString().slice(0, 10);
     let ApodData = await Apod.findOne({
         date: date    
     });
