@@ -15,25 +15,37 @@ app.set("view engine", "ejs");
 
 /* routes */
 app.get("/", async (req, res) => {
-    let date = req.query.date || new Date().toISOString().slice(0, 10);
-    let ApodData = await Apod.findOne({
-        date: date    
-    });
-    if(!ApodData){
-        let {data} = await axios(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`)
-        /* creating a new instance of Apod model.*/
-        ApodData = new Apod({   
-            date: data.date,
-            title: data.title,
-            explanation: data.explanation,
-            url: data.url,
-            media_type: data.media_type
+    try {
+        let date = req.query.date || new Date().toISOString().slice(0, 10);
+        let ApodData = await Apod.findOne({
+            date: date
         });
-        /* Saving data into db. */
-        await ApodData.save();
-        ApodData = data
+        if (!ApodData) {
+            let {
+                data
+            } = await axios(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`)
+            /* creating a new instance of Apod model.*/
+            ApodData = new Apod({
+                date: data.date,
+                title: data.title,
+                explanation: data.explanation,
+                url: data.url,
+                media_type: data.media_type
+            });
+            /* Saving data into db. */
+            await ApodData.save();
+            ApodData = data
+        }
+        return res.render("index", {
+            ApodData
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status : false,
+            message: `Something Went Wrong!`,
+            error_message: error.message
+        });
     }
-    return res.render("index", { ApodData });
 });
 
 
